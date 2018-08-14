@@ -22,3 +22,11 @@ $factory->define(App\Article::class, function (Faker $faker) {
         'commentCount'=> 0
     ];
 });
+
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'user_id'=> $faker->numberBetween(1, 5),
+        'article_id'=>$faker->numberBetween(1, 20),
+        'content'=> $faker->text(),
+    ];
+});

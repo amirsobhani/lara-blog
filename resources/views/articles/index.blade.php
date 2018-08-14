@@ -11,17 +11,17 @@
 
         <div>
             <h2>
-                <a href="#">{{ $article->title }}</a>
+                <a href="{{route('article.show', ['articleSlug'=> $article->slug])}}">{{ $article->title }}</a>
             </h2>
             <p class="lead">
-                ارسال شده توسط <a href="index.php">حسام موسوی</a>
+                ارسال شده توسط <a href="index.php">{{ $article->user->name }}</a>
             </p>
-            <p><span class="glyphicon glyphicon-time"></span>ارسال شده در تاریخ  فرودین 1396</p>
+            <p><span class="glyphicon glyphicon-time"></span>ارسال شده در تاریخ  {{verta($article->created_at)->formatWord('d F ').verta($article->created_at)->year}}</p>
             <hr>
             <img class="img-responsive" src="http://placehold.it/900x300" alt="">
             <hr>
             <p>{!! $article->body !!}</p>
-            <a class="btn btn-primary" href="#">ادامه  مطلب <span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="btn btn-primary" href="{{route('article.show', ['articleSlug'=> $article->slug])}}">ادامه  مطلب <span class="glyphicon glyphicon-chevron-left"></span></a>
         </div>
 
         @if(! $loop->last )
@@ -33,25 +33,7 @@
 
     <!-- Pager -->
     <div style="text-align:center;">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+       {!! $articles->render() !!}
     </div>
 
 @endsection

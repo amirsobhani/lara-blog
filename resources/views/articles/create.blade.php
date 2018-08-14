@@ -23,8 +23,8 @@
             <input type="text" name="title" class="form-control" id="title" placeholder="لطفا عنوان را وارد کنید ...">
         </div>
         <div class="form-group">
-            <label for="body">متن مقاله :</label>
-            <textarea class="form-control" name="body" id="body" placeholder="متن را وارد کنید" rows="7"></textarea>
+            <label for="content">متن مقاله :</label>
+            <textarea class="form-control" name="content" id="body" placeholder="متن را وارد کنید" rows="7"></textarea>
         </div>
         <button type="submit" class="btn btn-default">ارسال مقاله</button>
     </form>
