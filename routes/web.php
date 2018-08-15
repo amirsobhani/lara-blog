@@ -16,6 +16,10 @@
 //});
 
 Route::get('/', 'ArticleController@index');
-Route::get('/article/create', 'ArticleController@create');
+Route::middleware('auth')->get('/article/create', 'ArticleController@create');
 Route::post('/article', 'ArticleController@store')->name('article.store');
 Route::get('/article/{article}', 'ArticleController@show')->name('article.show');
+Route::post('/article/{article}/comment', 'CommentController@store')->name('comment.store');
+Auth::routes();
+Route::get('/articles/category/{category}', 'CategoryController@index');
+Route::get('/home', 'HomeController@index')->name('home');

@@ -24,6 +24,22 @@
                     <a href="#">تماس با ما</a>
                 </li>
             </ul>
+            @if(auth()->check())
+                <div class="nav navbar-left" style="margin-top: 10px">
+                    <form action="{{route('logout')}}" method="post">
+                        {!! csrf_field() !!}
+                        <button class="btn btn-danger btn-xs">خروج از حساب کاربری</button>
+                    </form>
+                </div>
+            @else
+                <div class="nav navbar-left" style="margin-top: 10px">
+                    <a class="btn btn-success btn-xs" href="/login">ورود به حساب کاربری</a>
+                    {{--<form action="{{route('login')}}" method="post">--}}
+                        {{--{!! csrf_field() !!}--}}
+                        {{--<button class="btn btn-success btn-xs">ورود به حساب کاربری</button>--}}
+                    {{--</form>--}}
+                </div>
+            @endif
         </div>
         <!-- /.navbar-collapse -->
     </div>

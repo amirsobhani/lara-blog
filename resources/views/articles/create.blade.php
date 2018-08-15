@@ -23,10 +23,30 @@
             <input type="text" name="title" class="form-control" id="title" placeholder="لطفا عنوان را وارد کنید ...">
         </div>
         <div class="form-group">
+            <label for="category">دسته بندی ها : </label>
+            <select name="category[]" class="form-control" id="category" title=" دسته بندی مورد نظر خود را انتخاب کنید..." multiple>
+                @foreach( $categories as $id => $name )
+                    <option value="{{ $id }}">{{ $name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="content">متن مقاله :</label>
-            <textarea class="form-control" name="content" id="body" placeholder="متن را وارد کنید" rows="7"></textarea>
+            <textarea class="form-control" name="content" id="content" placeholder="متن را وارد کنید" rows="7"></textarea>
         </div>
         <button type="submit" class="btn btn-default">ارسال مقاله</button>
     </form>
 
+@endsection
+
+@section('styles')
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet">
+@endsection
+
+@section('scripts')
+    <script src="/js/bootstrap-select.min.js"></script>
+
+    <script>
+        $('#category').selectpicker();
+    </script>
 @endsection

@@ -32,26 +32,33 @@
     <!-- Blog Comments -->
 
     <!-- Comments Form -->
-    <div class="well">
-        @include('layouts.errors')
+    @if(auth()->check())
+        <div class="well">
+            @include('layouts.errors')
 
-        <h4>ارسال کامنت :</h4>
+            <h4>ارسال کامنت :</h4>
+            <hr>
+            <form role="form" action="{{ route('comment.store' , ['article' => $article->slug]) }}" method="post">
+                {!! csrf_field() !!}
+                <div class="form-group">
+                    <label for="title">عنوان : </label>
+                    <input type="text" class="form-control" name="title" rows="3"/>
+                </div>
+                <div class="form-group">
+                    <label for="content">متن : </label>
+                    <textarea class="form-control" name="content" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">ارسال</button>
+            </form>
+        </div>
+
         <hr>
-        <form role="form" action="{{ route('comment.store' , ['article' => $article->slug ]) }}" method="post">
-            {!! csrf_field() !!}
-            <div class="form-group">
-                <label for="title">نام : </label>
-                <input type="text" class="form-control" name="name" rows="3"/>
-            </div>
-            <div class="form-group">
-                <label for="title">متن : </label>
-                <textarea class="form-control" name="body" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">ارسال</button>
-        </form>
-    </div>
-
-    <hr>
+    @else
+        <div class="success">
+            برای ارسال نظر وارد حساب کاربری خود شوید.
+            <a href="/login">ورود به حساب کاربری</a>
+        </div>
+    @endif
 
     <!-- Posted Comments -->
 
@@ -60,7 +67,7 @@
         <div class="media">
             <div class="media-body">
                 <h4 class="media-heading">{{ $comment->name }}
-                    <small>{{verta($article->created_at)->formatWord('d F ').verta($article->created_at)->year}}</small>
+                    <small>{{verta($comment->created_at)->formatWord('d F ').verta($comment->created_at)->year}}</small>
                 </h4>
                 {{ $comment->content }}
             </div>

@@ -21,7 +21,7 @@
     <!--  Bootstrap-RTL -->
     <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-
+    @yield('styles')
 </head>
 
 <body>
@@ -53,8 +53,9 @@
 
     </div>
     <!-- /.container -->
-    @yield('scripts')
     @include('layouts.footer-script')
+
+    @yield('scripts')
 
 </body>
 
